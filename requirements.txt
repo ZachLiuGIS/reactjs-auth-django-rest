@@ -1,0 +1,12 @@
+defusedxml==0.4.1
+Django==1.8.6
+django-allauth==0.23.0
+django-rest-auth==0.5.0
+djangorestframework==3.3.1
+oauthlib==1.0.3
+python3-openid==3.0.9
+requests==2.8.1
+requests-oauthlib==0.5.0
+six==1.10.0
+wheel==0.24.0
+django-cors-headers==1.1.0
