@@ -1,12 +1,11 @@
 import React from 'react';
-import addons from 'react-addons';
-import ReactMixin from 'react-mixin';
+import {Router, Route, Link} from 'react-router';
 import Auth from '../services/AuthService';
 import AuthenticatedComponent from '../components/AuthenticatedComponent';
 import History from '../services/History';
+import PublicHeader from '../components/PublicHeader';
 
-class PasswordChangePage extends React.Component {
-
+class Body extends React.Component {
     constructor() {
         super();
     }
@@ -27,16 +26,32 @@ class PasswordChangePage extends React.Component {
 
     render() {
         return (
-            <div className="login jumbotron center-block">
-                <h1>Reset Password</h1>
+            <div className="container jumbotron content">
+                <h2>Reset Password</h2>
                 <form role="form">
                     <div className="form-group">
-                        <label htmlFor="email">Email</label>
+                        <label htmlFor="email">Email Address</label>
                         <input type="email" className="form-control" id="email" ref="email"
                                placeholder="Email address related to your account"/>
                     </div>
                     <button type="submit" className="btn btn-default" onClick={this.reset_password.bind(this)}>Submit</button>
                 </form>
+            </div>
+        )
+    }
+}
+
+class PasswordChangePage extends React.Component {
+
+    constructor() {
+        super();
+    }
+
+    render() {
+        return (
+            <div>
+                <PublicHeader/>
+                <Body/>
             </div>
         )
     }

@@ -4,8 +4,9 @@ import Auth from '../services/AuthService'
 import {Link} from 'react-router';
 import UserActions from '../actions/UserActions';
 import UserStore from '../stores/UserStore';
+import AuthenticatedHeader from '../components/AuthenticatedHeader';
 
-class UserDetailPage extends React.Component {
+class Body extends React.Component {
 
     constructor() {
         super();
@@ -21,6 +22,10 @@ class UserDetailPage extends React.Component {
         // need .bind(this), otherwise this will be UserStore
         UserStore.addChangeListener(this._onChange.bind(this));
         this.loadUserDetail();
+
+        this.tableStyles = {
+            fontSize: "14px"
+        }
     }
 
     loadUserDetail() {
@@ -39,9 +44,9 @@ class UserDetailPage extends React.Component {
 
     render() {
         return (
-            <div>
-                <h1>User Detail</h1>
-                <table className="table-striped">
+            <div className="container jumbotron">
+                <h2>User Detail</h2>
+                <table className="table" style={this.tableStyles}>
                     <tbody>
                         <tr>
                             <td>Email: </td>
@@ -61,8 +66,17 @@ class UserDetailPage extends React.Component {
                         </tr>
                     </tbody>
                 </table>
-                <Link to="/dashboard">Go to Dashboard</Link><br/>
-                <button className="btn btn-primary" onClick={this.logout.bind(this)}>Logout</button>
+            </div>
+        )
+    }
+}
+
+class UserDetailPage extends React.Component {
+    render() {
+        return (
+            <div>
+                <AuthenticatedHeader/>
+                <Body/>
             </div>
         )
     }

@@ -14,7 +14,7 @@ class PublicHeader extends React.Component {
                                 <span className="icon-bar"></span>
                                 <span className="icon-bar"></span>
                             </button>
-                            <a className="navbar-brand" href="#">React Authentication Demo</a>
+                            <Link className="navbar-brand" to="/">React Authentication Demo</Link>
                         </div>
                         <div id="navbar" className="navbar-collapse collapse">
                             <ul className="nav navbar-nav navbar-right">

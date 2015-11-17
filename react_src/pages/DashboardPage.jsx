@@ -2,8 +2,9 @@ import React from 'react';
 import AuthenticatedComponent from '../components/AuthenticatedComponent';
 import Auth from '../services/AuthService'
 import {Link} from 'react-router';
+import AuthenticatedPublicHeader from '../components/AuthenticatedHeader';
 
-class DashboardPage extends React.Component {
+class Body extends React.Component {
 
     logout() {
         Auth.logout()
@@ -11,11 +12,20 @@ class DashboardPage extends React.Component {
 
     render() {
         return (
+            <div className="container jumbotron">
+                <h2>Welcome to the Dashboard Page</h2>
+                <p>You have logged in successfully!</p>
+            </div>
+        )
+    }
+}
+
+class DashboardPage extends React.Component {
+    render() {
+        return (
             <div>
-                <h1>This is the Dashboard Page</h1>
-                <Link to="/user-detail">User Detail</Link><br/>
-                <Link to="/password-change">Change Password</Link><br/>
-                <button className="btn btn-primary" onClick={this.logout.bind(this)}>Logout</button>
+                <AuthenticatedPublicHeader/>
+                <Body/>
             </div>
         )
     }

@@ -5,14 +5,11 @@ import PublicHeader from '../components/PublicHeader';
 class Body extends React.Component {
     constructor() {
         super();
-        this.containerStyles = {
-            "marginTop": "40px"
-        }
     }
 
     render() {
         return(
-            <div className="container-fluid jumbotron text-center" style={this.containerStyles}>
+            <div className="container-fluid jumbotron text-center content">
                 <h1>React Auth</h1>
                 <p>This is a demo site for ReactJS Authentication with django-rest-auth.</p>
                 <Link to='/signup' className="btn btn-lg btn-success">Sign Up</Link> <strong>or</strong> &nbsp;

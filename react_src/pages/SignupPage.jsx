@@ -2,8 +2,9 @@ import React from 'react';
 import addons from 'react-addons';
 import ReactMixin from 'react-mixin';
 import Auth from '../services/AuthService';
+import PublicHeader from '../components/PublicHeader';
 
-class Signup extends React.Component {
+class Body extends React.Component {
 
     constructor() {
         super();
@@ -26,8 +27,8 @@ class Signup extends React.Component {
 
     render() {
         return (
-            <div className="login jumbotron center-block">
-                <h1>Signup</h1>
+            <div className="container jumbotron">
+                <h2>Signup</h2>
                 <form role="form">
                     <div className="form-group">
                         <label htmlFor="useremail">User Email</label>
@@ -52,6 +53,17 @@ class Signup extends React.Component {
     }
 }
 
+class Signup extends React.Component {
+    render() {
+        return (
+            <div>
+                <PublicHeader/>
+                <Body/>
+            </div>
+        )
+    }
+}
+
 export default Signup;
 
-ReactMixin(Signup.prototype, addons.LinkedStateMixin);
+ReactMixin(Body.prototype, addons.LinkedStateMixin);

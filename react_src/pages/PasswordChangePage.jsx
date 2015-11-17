@@ -4,8 +4,9 @@ import ReactMixin from 'react-mixin';
 import Auth from '../services/AuthService';
 import AuthenticatedComponent from '../components/AuthenticatedComponent';
 import History from '../services/History';
+import AuthenticatedHeader from '../components/AuthenticatedHeader';
 
-class PasswordChangePage extends React.Component {
+class Body extends React.Component {
 
     constructor() {
         super();
@@ -33,8 +34,8 @@ class PasswordChangePage extends React.Component {
 
     render() {
         return (
-            <div className="login jumbotron center-block">
-                <h1>Change Password</h1>
+            <div className="container jumbotron">
+                <h2>Change Password</h2>
                 <form role="form">
                     <div className="form-group">
                         <label htmlFor="password">Password</label>
@@ -48,6 +49,17 @@ class PasswordChangePage extends React.Component {
                     </div>
                     <button type="submit" className="btn btn-default" onClick={this.change_password.bind(this)}>Submit</button>
                 </form>
+            </div>
+        )
+    }
+}
+
+class PasswordChangePage extends React.Component {
+    render() {
+        return (
+            <div>
+                <AuthenticatedHeader/>
+                <Body/>
             </div>
         )
     }
