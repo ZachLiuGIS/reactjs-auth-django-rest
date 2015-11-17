@@ -1,4 +1,4 @@
-# This is an ReactJS Authentication Demo Site, using django-rest-auth as backend
+# A ReactJS Authentication Demo Site, using django-rest-auth as backend
 
 This demo demonstrate how to build a simple authentication system using ReactJS + React Router + Flux. It also shows
 that ReactJS can be integrated with django easily with browerify and gulp.
