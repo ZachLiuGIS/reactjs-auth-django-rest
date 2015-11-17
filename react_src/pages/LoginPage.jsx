@@ -14,10 +14,10 @@ class Body extends React.Component {
     login(evt) {
         evt.preventDefault();
 
-        var email = this.refs.email.value;
+        var username = this.refs.username.value;
         var password = this.refs.password.value;
 
-        Auth.login(email, password)
+        Auth.login(username, password)
             .catch(function(err) {
                 console.log("Error logging in", err)
             });
@@ -33,9 +33,9 @@ class Body extends React.Component {
                 <h2>Login</h2>
                 <form role="form">
                     <div className="form-group">
-                        <label htmlFor="email">Email</label>
-                        <input type="text" className="form-control" id="email"
-                               placeholder="Email Address" ref="email"/>
+                        <label htmlFor="username">Username</label>
+                        <input type="text" className="form-control" id="username"
+                               placeholder="Email Address" ref="username"/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="password">Password</label>

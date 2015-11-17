@@ -14,8 +14,8 @@ class Body extends React.Component {
         evt.preventDefault();
         var email = this.refs.email.value;
         var username = this.refs.username.value;
-        var password1 = this.refs.password1;
-        var password2 = this.refs.password2;
+        var password1 = this.refs.password1.value;
+        var password2 = this.refs.password2.value;
 
         Auth.signup(email, username, password1, password2)
             .catch(function(err) {

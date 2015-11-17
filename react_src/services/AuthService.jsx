@@ -5,16 +5,16 @@ import UserActions from '../actions/UserActions';
 import UserStore from '../stores/UserStore';
 
 class AuthService {
-    login(email, password) {
+    login(username, password) {
         console.log("login with");
-        console.log(email, password);
+        console.log(username, password);
         return this.handleAuth(
             when(request({
                 url: UserConstants.LOGIN_URL,
                 method: 'POST',
                 type: 'json',
                 data: {
-                    username: email,
+                    username: username,
                     password: password
                 }
             }))
@@ -42,6 +42,7 @@ class AuthService {
     }
 
     signup(email, username, password1, password2) {
+        console.log(password1, password2);
         return this.handleAuth(when(request({
             url: UserConstants.SIGNUP_URL,
             method: 'POST',
