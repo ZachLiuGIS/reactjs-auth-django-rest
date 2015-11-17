@@ -8,17 +8,16 @@ class Body extends React.Component {
 
     constructor() {
         super();
-        this.state = {
-            useremail:'',
-            username: '',
-            password1: '',
-            password2: ''
-        };
     }
 
-    signup(e) {
-        e.preventDefault();
-        Auth.signup(this.state.useremail, this.state.username, this.state.password1, this.state.password2)
+    signup(evt) {
+        evt.preventDefault();
+        var email = this.refs.email.value;
+        var username = this.refs.username.value;
+        var password1 = this.refs.password1;
+        var password2 = this.refs.password2;
+
+        Auth.signup(email, username, password1, password2)
             .catch(function(err) {
                 alert("There's an error signing up");
                 console.log("Error logging in", err);
@@ -31,20 +30,24 @@ class Body extends React.Component {
                 <h2>Signup</h2>
                 <form role="form">
                     <div className="form-group">
-                        <label htmlFor="useremail">User Email</label>
-                        <input type="email" valueLink={this.linkState('useremail')} className="form-control" id="useremail" placeholder="User email" />
+                        <label htmlFor="email">User Email</label>
+                        <input type="email" className="form-control" id="email"
+                               placeholder="User email" ref="email"/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="username">User Name</label>
-                        <input type="text" valueLink={this.linkState('username')} className="form-control" id="username" placeholder="User name" />
+                        <input type="text" className="form-control" id="username"
+                               placeholder="User name" ref="username"/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="password">Password</label>
-                        <input type="password" valueLink={this.linkState('password1')} className="form-control" id="password" ref="password" placeholder="Password" />
+                        <input type="password" className="form-control" id="password"
+                               placeholder="Password" ref="password1" />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="password_repeat">Repeat Password</label>
-                        <input type="password" valueLink={this.linkState('password2')} className="form-control" id="password_repeat" ref="confirm_password" placeholder="Confirm password" />
+                        <label htmlFor="password2">Repeat Password</label>
+                        <input type="password" className="form-control" id="password2"
+                               placeholder="Confirm password" ref="password2" />
                     </div>
                     <button type="submit" className="btn btn-default" onClick={this.signup.bind(this)}>Submit</button>
                 </form>

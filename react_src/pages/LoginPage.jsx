@@ -8,15 +8,16 @@ class Body extends React.Component {
 
     constructor() {
         super();
-        this.state = {
-            email: '',
-            password: ''
-        }
+
     }
 
     login(evt) {
         evt.preventDefault();
-        Auth.login(this.state.email, this.state.password)
+
+        var email = this.refs.email.value;
+        var password = this.refs.password.value;
+
+        Auth.login(email, password)
             .catch(function(err) {
                 console.log("Error logging in", err)
             });
@@ -34,12 +35,12 @@ class Body extends React.Component {
                     <div className="form-group">
                         <label htmlFor="email">Email</label>
                         <input type="text" className="form-control" id="email"
-                               placeholder="Email Address" onChange={(evt) => this.handleChange(evt, "email")}/>
+                               placeholder="Email Address" ref="email"/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="password">Password</label>
                         <input type="password" className="form-control" id="password" placeholder="Password"
-                                ref="password" onChange={(evt) => this.handleChange(evt, "password")}/>
+                                ref="password"/>
                     </div>
                     <button type="submit" className="btn btn-default" onClick={this.login.bind(this)}>Submit</button>
                 </form>
