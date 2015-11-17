@@ -12,7 +12,8 @@ Clone the repository, which is a django project. All reactjs part is under react
 
 ## Django, Django Rest Framework and Django-Rest-Auth
 
-create your virtualenv and activate (python3)
+create your virtualenv and activate (python3) 
+under win: python -m venv 'envname'
 
 run `pip install -r requirements.txt` to install all django dependencies
 
