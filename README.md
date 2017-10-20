@@ -1,3 +1,17 @@
+# This repo is in the upgrading process since it is outdated
+
+## Backend updating:
+   - django 1.11
+   - django-rest-auth 0.9.2
+   - django-rest-framework 3.7
+
+## Frontend updating:
+   - webpack (it rules JS world now)
+   - React v16
+   - React Router 4
+   - Redux
+   
+
 # A ReactJS Authentication Demo Site, using django-rest-auth as backend
 
 This demo demonstrate how to build a simple authentication system using ReactJS + React Router + Flux. It also shows
