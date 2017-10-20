@@ -42,11 +42,14 @@ INSTALLED_APPS = (
     'rest_framework',
     'rest_framework.authtoken',
     'rest_auth',
+    'rest_auth.registration',
 
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'rest_auth.registration',
+
+    # 'allauth.socialaccount.providers.facebook',
+    # 'allauth.socialaccount.providers.twitter',
 
     # rest cors support
     'corsheaders',

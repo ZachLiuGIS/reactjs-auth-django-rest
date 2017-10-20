@@ -10,7 +10,11 @@
    - React v16
    - React Router 4
    - Redux
-   
+   - reactstrap (Bootstrap 4 components)
+
+## TODO:
+Social Account Registration and Login
+
 
 # A ReactJS Authentication Demo Site, using django-rest-auth as backend
 
