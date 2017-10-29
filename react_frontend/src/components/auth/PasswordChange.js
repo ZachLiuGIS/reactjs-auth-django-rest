@@ -2,20 +2,19 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { reduxForm, Field, propTypes } from "redux-form";
-import { signupUser } from "../../actions/authActions";
+import { changePassword } from "../../actions/authActions";
 
 class Signup extends Component {
 
     static propTypes = {
         ...propTypes,
-        signupUser: PropTypes.func,
-        errorMessage: PropTypes.string
+        changePassword: PropTypes.func
     };
 
-    handleFormSubmit(values) {
+    handleFormSubmit = (values) => {
         // Call action creator to sign up the user.
-        this.props.signupUser(values);
-    }
+        this.props.changePassword(values);
+    };
 
     renderField = ({ input, label, type, meta: { touched, error } }) => (
         <div>
@@ -44,34 +43,29 @@ class Signup extends Component {
             <div className="row justify-content-center">
                 <form
                     className="col col-sm-4 card mt-5 p-2"
-                    onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}
+                    onSubmit={handleSubmit(this.handleFormSubmit)}
                 >
-                    <h4 className="text-md-center">Sign Up</h4>
+                    <h4 className="text-md-center">Change Password</h4>
                     <hr/>
 
                     <fieldset className="form-group">
-                        <Field name="username" label="Username" component={this.renderField}
-                               type="text"/>
-                    </fieldset>
-
-                    <fieldset className="form-group">
-                        <Field name="email" label="Email" component={this.renderField}
-                               type="text"/>
-                    </fieldset>
-
-                    <fieldset className="form-group">
-                        <Field name="password1" label="Password" component={this.renderField}
+                        <Field name="old_password" label="Old Password" component={this.renderField}
                                type="password"/>
                     </fieldset>
 
                     <fieldset className="form-group">
-                        <Field name="password2" label="Confirm Password" component={this.renderField}
+                        <Field name="new_password1" label="New Password" component={this.renderField}
+                               type="password"/>
+                    </fieldset>
+
+                    <fieldset className="form-group">
+                        <Field name="new_password2" label="Confirm New Password" component={this.renderField}
                                type="password"/>
                     </fieldset>
 
                     <fieldset className="form-group">
                         {this.renderAlert()}
-                        <button action="submit" className="btn btn-primary">Sign Up</button>
+                        <button action="submit" className="btn btn-primary">Submit</button>
                     </fieldset>
                 </form>
             </div>
@@ -82,8 +76,8 @@ class Signup extends Component {
 // Sync field level validation for password match
 const validateForm = values => {
     const errors = {};
-    const { password1, password2 } = values;
-    if (password1 !== password2) {
+    const { new_password1, new_password2 } = values;
+    if (new_password1 !== new_password2) {
         errors.passwordConfirm = "Password does not match."
     }
     return errors;
@@ -93,7 +87,7 @@ function mapStateToProps(state) {
     return { errorMessage: state.auth.error };
 }
 
-export default connect(mapStateToProps, { signupUser })(reduxForm({
-    form: "signup",
+export default connect(mapStateToProps, { changePassword })(reduxForm({
+    form: "change_password",
     validate: validateForm
 })(Signup));

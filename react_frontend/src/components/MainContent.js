@@ -6,6 +6,7 @@ import Login from "./auth/Login";
 import Logout from "./auth/Logout";
 import Signup from "./auth/Signup";
 import UserProfile from "./auth/UserProfile";
+import PasswordChange from "./auth/PasswordChange";
 import NoMatch from "./NoMatch";
 
 const MainContent = () => (
@@ -16,6 +17,7 @@ const MainContent = () => (
             <Route path="/logout" component={Logout}/>
             <Route path="/signup" component={Signup}/>
             <Route path="/profile" component={RequireAuth(UserProfile)}/>
+            <Route path="/change_password" component={RequireAuth(PasswordChange)}/>
             <Route component={NoMatch}/>
         </Switch>
     </div>

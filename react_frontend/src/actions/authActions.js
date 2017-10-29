@@ -97,8 +97,36 @@ export function getUserProfile() {
             }).catch((error) => {
                 // If request is bad...
                 // Show an error to the user
-                dispatch(authError(error.response.data.error));
+                console.log(error);
+                // TODO: send notification and redirect
             });
         }
     };
+}
+
+export function changePassword(formValues) {
+    return function (dispatch, getState) {
+        const changePasswordUrl = AuthUrls.CHANGE_PASSWORD;
+
+        const token = getUserToken(getState());
+
+        if (token) {
+            axios.post(changePasswordUrl, formValues, {
+                headers: {
+                    authorization: 'Token ' + token
+                }
+            })
+                .then((response) => {
+                    // TODO: send notification
+                    // redirect to the route '/profile'
+                    history.push("/profile");
+                })
+                .catch((error) => {
+                    // If request is bad...
+                    // Show an error to the user
+                    console.log(error);
+                    // TODO: send notification and redirect
+                });
+        }
+    }
 }

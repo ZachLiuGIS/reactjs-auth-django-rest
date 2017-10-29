@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { getUserProfile } from "../../actions/authActions";
 
 class UserProfile extends Component {
@@ -28,7 +29,13 @@ class UserProfile extends Component {
     }
 
     render() {
-        return this.renderUser();
+        return (
+            <div>
+                {this.renderUser()}
+                {" "}
+                <Link to="/change_password">change password</Link>
+            </div>
+        );
     }
 }
 
