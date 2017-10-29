@@ -1,0 +1,41 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "mocha": true
+  },
+  "globals": {
+    "expect": true,
+    "React": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "eol-last": "error",
+    "no-var": "warn",
+    "prefer-const": "warn",
+    "quotes": [
+      "error",
+      "double",
+      {
+        "avoidEscape": false,
+        "allowTemplateLiterals": true
+      }
+    ],
+    "react/no-did-update-set-state": "error",
+    "react/no-unknown-property": "error",
+    "react/no-unused-prop-types": "error",
+    "react/prop-types": "error",
+    "react/react-in-jsx-scope": "error",
+    "no-global-assign": "error",
+    "no-multi-spaces": "error",
+    "no-whitespace-before-property": "error"
+  }
+}
