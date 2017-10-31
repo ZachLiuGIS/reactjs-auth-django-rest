@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "React Authentication Frontend",
   "main": "src/index.js",
+  "repository": "https://github.com/ZachLiuGIS/reactjs-auth-django-rest",
   "scripts": {
     "clean": "rimraf ./dist",
     "lint": "eslint ./src ./tests",
@@ -60,6 +61,7 @@
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-form": "^7.1.2",
+    "redux-form-validators": "^2.1.0",
     "redux-thunk": "^2.2.0"
   }
 }

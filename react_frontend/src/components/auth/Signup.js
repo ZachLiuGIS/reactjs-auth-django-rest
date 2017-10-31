@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // import PropTypes from "prop-types";
 import { reduxForm, Field, propTypes } from "redux-form";
-
+import { required } from "redux-form-validators"
 import { renderField, renderError } from "../../utils/renderUtils";
 import { signupUser } from "../../actions/authActions";
 
@@ -26,7 +26,8 @@ class Signup extends Component {
 
                     <fieldset className="form-group">
                         <Field name="username" label="Username" component={renderField}
-                               type="text"/>
+                               type="text" validate={[required({message: "This field is required."})]}
+                        />
                     </fieldset>
 
                     <fieldset className="form-group">
@@ -36,12 +37,14 @@ class Signup extends Component {
 
                     <fieldset className="form-group">
                         <Field name="password1" label="Password" component={renderField}
-                               type="password"/>
+                               type="password" validate={[required({message: "This field is required."})]}
+                        />
                     </fieldset>
 
                     <fieldset className="form-group">
                         <Field name="password2" label="Confirm Password" component={renderField}
-                               type="password"/>
+                               type="password" validate={[required({message: "This field is required."})]}
+                        />
                     </fieldset>
 
                     { renderError(error) }
