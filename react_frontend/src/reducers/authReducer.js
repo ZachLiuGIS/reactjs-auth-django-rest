@@ -3,11 +3,9 @@ import { AuthTypes } from "../constants/actionTypes";
 export default function(state = {}, action) {
     switch(action.type) {
         case AuthTypes.LOGIN:
-            return { ...state, error: "", authenticated: true, token: action.payload};
+            return { ...state, authenticated: true, token: action.payload};
         case AuthTypes.LOGOUT:
-            return { ...state, error: "", authenticated: false, token: null};
-        case AuthTypes.ERROR:
-            return { ...state, error: action.payload};
+            return { ...state, authenticated: false, token: null};
         case AuthTypes.USER_PROFILE:
             return { ...state, user: action.payload};
     }

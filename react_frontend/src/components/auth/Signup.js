@@ -1,76 +1,52 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
+// import PropTypes from "prop-types";
 import { reduxForm, Field, propTypes } from "redux-form";
+
+import { renderField, renderError } from "../../utils/renderUtils";
 import { signupUser } from "../../actions/authActions";
 
 class Signup extends Component {
 
     static propTypes = {
-        ...propTypes,
-        signupUser: PropTypes.func,
-        errorMessage: PropTypes.string
+        ...propTypes
     };
 
-    handleFormSubmit(values) {
-        // Call action creator to sign up the user.
-        this.props.signupUser(values);
-    }
-
-    renderField = ({ input, label, type, meta: { touched, error } }) => (
-        <div>
-            <label>{label}</label>
-            <div>
-                <input className="form-control" {...input} type={type}/>
-            </div>
-            {touched && ((error && <div className="alert alert-danger p-1"><small>{error}</small></div>))}
-        </div>
-    );
-
-    renderAlert() {
-        if (this.props.errorMessage) {
-            return (
-                <div className="alert alert-danger">
-                    <string>Oops!</string> {this.props.errorMessage}
-                </div>
-            )
-        }
-    }
 
     render() {
-        const { handleSubmit } = this.props;
+        const { handleSubmit, error } = this.props;
 
         return (
             <div className="row justify-content-center">
                 <form
                     className="col col-sm-4 card mt-5 p-2"
-                    onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}
+                    onSubmit={handleSubmit}
                 >
                     <h4 className="text-md-center">Sign Up</h4>
                     <hr/>
 
                     <fieldset className="form-group">
-                        <Field name="username" label="Username" component={this.renderField}
+                        <Field name="username" label="Username" component={renderField}
                                type="text"/>
                     </fieldset>
 
                     <fieldset className="form-group">
-                        <Field name="email" label="Email" component={this.renderField}
+                        <Field name="email" label="Email" component={renderField}
                                type="text"/>
                     </fieldset>
 
                     <fieldset className="form-group">
-                        <Field name="password1" label="Password" component={this.renderField}
+                        <Field name="password1" label="Password" component={renderField}
                                type="password"/>
                     </fieldset>
 
                     <fieldset className="form-group">
-                        <Field name="password2" label="Confirm Password" component={this.renderField}
+                        <Field name="password2" label="Confirm Password" component={renderField}
                                type="password"/>
                     </fieldset>
 
+                    { renderError(error) }
+
                     <fieldset className="form-group">
-                        {this.renderAlert()}
                         <button action="submit" className="btn btn-primary">Sign Up</button>
                     </fieldset>
                 </form>
@@ -84,16 +60,13 @@ const validateForm = values => {
     const errors = {};
     const { password1, password2 } = values;
     if (password1 !== password2) {
-        errors.passwordConfirm = "Password does not match."
+        errors.password2 = "Password does not match."
     }
     return errors;
 };
 
-function mapStateToProps(state) {
-    return { errorMessage: state.auth.error };
-}
-
-export default connect(mapStateToProps, { signupUser })(reduxForm({
+export default reduxForm({
     form: "signup",
-    validate: validateForm
-})(Signup));
+    validate: validateForm,
+    onSubmit: signupUser
+})(Signup);
