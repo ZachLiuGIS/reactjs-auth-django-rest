@@ -124,7 +124,6 @@ STATICFILES_DIRS = (
 
 
 REST_SESSION_LOGIN = False
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 SITE_ID = 1
 ACCOUNT_EMAIL_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'username'
@@ -156,3 +155,8 @@ CORS_ORIGIN_REGEX_WHITELIST = (
     r'^(https?://)?localhost',
     r'^(https?://)?127.',
 )
+
+# Email Settings
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = 'tmp/emails'
+DEFAULT_FROM_EMAIL = 'admin@admin.com'

@@ -4,5 +4,6 @@ export const AuthUrls = {
     LOGIN: `${ROOT_URL}rest-auth/login/`,
     SIGNUP: `${ROOT_URL}rest-auth/registration/`,
     CHANGE_PASSWORD: `${ROOT_URL}rest-auth/password/change/`,
+    RESET_PASSWORD: `${ROOT_URL}rest-auth/password/reset/`,
     USER_PROFILE: `${ROOT_URL}rest-auth/user/`
 };

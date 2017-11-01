@@ -117,6 +117,21 @@ export function changePassword(formValues, dispatch, props) {
     }
 }
 
+export function resetPassword(formValues, dispatch, props) {
+    const resetPasswordUrl = AuthUrls.RESET_PASSWORD;
+
+    return axios.post(resetPasswordUrl, formValues)
+        .then(response => {
+            // redirect to reset done page
+            console.log(response);
+        }).catch((error) => {
+            // If request is bad...
+            // Show an error to the user
+            const processedError = processServerError(error.response.data);
+            throw new SubmissionError(processedError);
+        });
+}
+
 // util functions
 function processServerError(error) {
     return  Object.keys(error).reduce(function(newDict, key) {
