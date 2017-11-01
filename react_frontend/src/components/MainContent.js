@@ -8,6 +8,7 @@ import Signup from "./auth/Signup";
 import UserProfile from "./auth/UserProfile";
 import PasswordChange from "./auth/PasswordChange";
 import PasswordReset from "./auth/PasswordReset";
+import PasswordResetDone from "./auth/PasswordResetDone";
 import NoMatch from "./NoMatch";
 
 const MainContent = () => (
@@ -18,6 +19,7 @@ const MainContent = () => (
             <Route path="/logout" component={Logout}/>
             <Route path="/signup" component={Signup}/>
             <Route path="/reset_password" component={PasswordReset}/>
+            <Route path="/reset_password_done" component={PasswordResetDone}/>
             <Route path="/profile" component={RequireAuth(UserProfile)}/>
             <Route path="/change_password" component={RequireAuth(PasswordChange)}/>
             <Route component={NoMatch}/>

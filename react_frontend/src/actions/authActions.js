@@ -123,7 +123,7 @@ export function resetPassword(formValues, dispatch, props) {
     return axios.post(resetPasswordUrl, formValues)
         .then(response => {
             // redirect to reset done page
-            console.log(response);
+            history.push("/reset_password_done");
         }).catch((error) => {
             // If request is bad...
             // Show an error to the user
