@@ -72,8 +72,8 @@ function setUserProfile(payload) {
 }
 
 export function getUserProfile() {
-    return function(dispatch, getState) {
-        const token = getUserToken(getState());
+    return function(dispatch) {
+        const token = getUserToken(store.getState());
         if (token) {
             axios.get(AuthUrls.USER_PROFILE, {
                 headers: {
@@ -93,8 +93,6 @@ export function getUserProfile() {
 
 export function changePassword(formValues, dispatch, props) {
     const changePasswordUrl = AuthUrls.CHANGE_PASSWORD;
-
-    // TODO: fix getState outside of redux thunk
     const token = getUserToken(store.getState());
 
     if (token) {
@@ -139,14 +137,8 @@ export function confirmPasswordChange(formValues, dispatch, props) {
     console.log(data);
     return axios.post(resetPasswordConfirmUrl, data)
         .then(response => {
-
-            const token = response.data.key;
-            dispatch(authLogin(token));
-            localStorage.setItem("token", token);
-
-            history.push("/");
             // TODO: send notification of success.
-
+            history.push("/login");
         }).catch((error) => {
             // If request is bad...
             // Show an error to the user
