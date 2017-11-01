@@ -23,10 +23,9 @@ export function loginUser(formValues, dispatch, props) {
             const token = response.data.key;
             dispatch(authLogin(token));
 
-            // Save the JWT token
             localStorage.setItem("token", token);
 
-            // redirect to the route '/feature'
+            // redirect to the route '/'
             history.push("/");
         }).catch(error => {
             const processedError = processServerError(error.response.data);
@@ -48,10 +47,11 @@ export function signupUser(formValues, dispatch, props) {
         .then((response) => {
             // If request is good...
             // Update state to indicate user is authenticated
-            dispatch(authLogin());
+            const token = response.data.key;
+            dispatch(authLogin(token));
 
             // Save the JWT token
-            localStorage.setItem("token", response.data.key);
+            localStorage.setItem("token", token);
 
             // redirect to the route '/'
             history.push("/");
@@ -132,15 +132,41 @@ export function resetPassword(formValues, dispatch, props) {
         });
 }
 
+export function confirmPasswordChange(formValues, dispatch, props) {
+    const { uid, token } = props.match.params;
+    const resetPasswordConfirmUrl = AuthUrls.RESET_PASSWORD_CONFIRM;
+    const data = Object.assign(formValues, { uid, token });
+    console.log(data);
+    return axios.post(resetPasswordConfirmUrl, data)
+        .then(response => {
+
+            const token = response.data.key;
+            dispatch(authLogin(token));
+            localStorage.setItem("token", token);
+
+            history.push("/");
+            // TODO: send notification of success.
+
+        }).catch((error) => {
+            // If request is bad...
+            // Show an error to the user
+            const processedError = processServerError(error.response.data);
+            throw new SubmissionError(processedError);
+        });
+}
+
 // util functions
 function processServerError(error) {
     return  Object.keys(error).reduce(function(newDict, key) {
         if (key === "non_field_errors") {
-            newDict["_error"] = error[key];
+            newDict["_error"].push(error[key]);
+        } else if (key === "token") {
+            // token sent with request is invalid
+            newDict["_error"].push("The link is not valid any more.");
         } else {
             newDict[key] = error[key];
         }
 
         return newDict
-    }, {});
+    }, {"_error": []});
 }

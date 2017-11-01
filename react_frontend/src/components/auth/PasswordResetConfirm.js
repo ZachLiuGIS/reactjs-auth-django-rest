@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-// import PropTypes from "prop-types";
 import { reduxForm, Field, propTypes } from "redux-form";
 import { required } from "redux-form-validators"
-import { changePassword } from "../../actions/authActions";
+import { confirmPasswordChange } from "../../actions/authActions";
 import { renderField, renderError } from "../../utils/renderUtils";
 
-class PasswordChange extends Component {
+class PasswordResetConfirm extends Component {
 
     static propTypes = {
         ...propTypes
@@ -20,14 +19,8 @@ class PasswordChange extends Component {
                     className="col col-sm-4 card mt-5 p-2"
                     onSubmit={handleSubmit}
                 >
-                    <h4 className="text-md-center">Change Password</h4>
+                    <h4 className="text-md-center">Create New Password</h4>
                     <hr/>
-
-                    <fieldset className="form-group">
-                        <Field name="old_password" label="Old Password" component={renderField}
-                               type="password" validate={[required({message: "This field is required."})]}
-                        />
-                    </fieldset>
 
                     <fieldset className="form-group">
                         <Field name="new_password1" label="New Password" component={renderField}
@@ -62,7 +55,7 @@ const validateForm = values => {
 };
 
 export default reduxForm({
-    form: "change_password",
-    onSubmit: changePassword,
+    form: "password_reset_confirm",
+    onSubmit: confirmPasswordChange,
     validate: validateForm
-})(PasswordChange);
+})(PasswordResetConfirm);
