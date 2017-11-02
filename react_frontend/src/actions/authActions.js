@@ -1,6 +1,8 @@
 import axios from "axios";
 import { SubmissionError } from 'redux-form';
 import history from "../utils/historyUtils";
+import { actions as notifActions } from 'redux-notifications';
+const { notifSend } = notifActions;
 
 import { AuthTypes } from "../constants/actionTypes";
 import { AuthUrls } from "../constants/urls";
@@ -102,7 +104,11 @@ export function changePassword(formValues, dispatch, props) {
             }
         })
             .then((response) => {
-                // TODO: send notification
+                dispatch(notifSend({
+                    message: "Password has bee changed successfully",
+                    kind: "info",
+                    dismissAfter: 2000
+                }));
                 // redirect to the route '/profile'
                 history.push("/profile");
             })

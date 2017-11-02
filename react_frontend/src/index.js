@@ -1,4 +1,5 @@
 import "bootstrap/dist/css/bootstrap.css";
+import 'redux-notifications/lib/styles.css';
 import "./styles/style.css"
 import React from "react";
 import ReactDOM from "react-dom";
