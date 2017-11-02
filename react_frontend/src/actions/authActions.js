@@ -105,9 +105,9 @@ export function changePassword(formValues, dispatch, props) {
         })
             .then((response) => {
                 dispatch(notifSend({
-                    message: "Password has bee changed successfully",
+                    message: "Password has been changed successfully",
                     kind: "info",
-                    dismissAfter: 2000
+                    dismissAfter: 5000
                 }));
                 // redirect to the route '/profile'
                 history.push("/profile");
@@ -143,7 +143,12 @@ export function confirmPasswordChange(formValues, dispatch, props) {
     console.log(data);
     return axios.post(resetPasswordConfirmUrl, data)
         .then(response => {
-            // TODO: send notification of success.
+            dispatch(notifSend({
+                message: "Password has been reset successfully, please log in",
+                kind: "info",
+                dismissAfter: 5000
+            }));
+
             history.push("/login");
         }).catch((error) => {
             // If request is bad...
