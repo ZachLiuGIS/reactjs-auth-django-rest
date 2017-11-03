@@ -48,15 +48,14 @@ export function signupUser(formValues, dispatch, props) {
     return axios.post(signupUrl, formValues)
         .then((response) => {
             // If request is good...
-            // Update state to indicate user is authenticated
-            const token = response.data.key;
-            dispatch(authLogin(token));
+            // you can login if email verification is turned off.
+            // const token = response.data.key;
+            // dispatch(authLogin(token));
+            // localStorage.setItem("token", token);
 
-            // Save the JWT token
-            localStorage.setItem("token", token);
-
-            // redirect to the route '/'
-            history.push("/");
+            // email need to be verified, so don't login and send user to signup_done page.
+            // redirect to signup done page.
+            history.push("/signup_done");
         })
         .catch((error) => {
             // If request is bad...

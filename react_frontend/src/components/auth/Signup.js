@@ -25,14 +25,14 @@ class Signup extends Component {
                     <hr/>
 
                     <fieldset className="form-group">
-                        <Field name="username" label="Username" component={renderField}
-                               type="text" validate={[required({message: "This field is required."})]}
-                        />
+                        <Field name="email" label="Email" component={renderField}
+                               type="text"/>
                     </fieldset>
 
                     <fieldset className="form-group">
-                        <Field name="email" label="Email" component={renderField}
-                               type="text"/>
+                        <Field name="username" label="Username" component={renderField}
+                               type="text" validate={[required({message: "This field is required."})]}
+                        />
                     </fieldset>
 
                     <fieldset className="form-group">
