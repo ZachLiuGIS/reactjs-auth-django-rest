@@ -53,6 +53,8 @@ INSTALLED_APPS = (
 
     # rest cors support
     'corsheaders',
+
+    'user_profile',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -125,7 +127,9 @@ STATICFILES_DIRS = (
 
 SITE_ID = 1
 
-# User Authentication Settings
+## User Authentication Settings
+
+ACCOUNT_ADAPTER = 'user_profile.adapter.MyAccountAdapter'
 # Following is added to enable registration with email instead of username
 AUTHENTICATION_BACKENDS = (
  # Needed to login by username in Django admin, regardless of `allauth`

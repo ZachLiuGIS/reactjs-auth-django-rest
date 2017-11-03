@@ -139,11 +139,33 @@ export function confirmPasswordChange(formValues, dispatch, props) {
     const { uid, token } = props.match.params;
     const resetPasswordConfirmUrl = AuthUrls.RESET_PASSWORD_CONFIRM;
     const data = Object.assign(formValues, { uid, token });
-    console.log(data);
+
     return axios.post(resetPasswordConfirmUrl, data)
         .then(response => {
             dispatch(notifSend({
                 message: "Password has been reset successfully, please log in",
+                kind: "info",
+                dismissAfter: 5000
+            }));
+
+            history.push("/login");
+        }).catch((error) => {
+            // If request is bad...
+            // Show an error to the user
+            const processedError = processServerError(error.response.data);
+            throw new SubmissionError(processedError);
+        });
+}
+
+export function activateUserAccount(formValues, dispatch, props) {
+    const { key } = props.match.params;
+    const activateUserUrl = AuthUrls.USER_ACTIVATION;
+    const data = Object.assign(formValues, { key });
+
+    return axios.post(activateUserUrl, data)
+        .then(response => {
+            dispatch(notifSend({
+                message: "Your account has been activated successfully, please log in",
                 kind: "info",
                 dismissAfter: 5000
             }));
