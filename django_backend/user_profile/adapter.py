@@ -1,6 +1,7 @@
 from django.contrib.sites.shortcuts import get_current_site
 from allauth.account.adapter import DefaultAccountAdapter
 
+
 class MyAccountAdapter(DefaultAccountAdapter):
 
     def get_email_confirmation_url(self, request, emailconfirmation):

@@ -17,11 +17,16 @@ class UserProfile extends Component {
 
     renderUser() {
         const user = this.props.user;
+        console.log(user);
         if (user) {
             return (
                 <div className="mx-2">
                     <h4>username: {user.username}</h4>
                     <h4>email: {user.email}</h4>
+                    <h4>Website: {user.website}</h4>
+                    <hr />
+                    <h4>About Myself:</h4>
+                    <p>{user.about}</p>
                 </div>
             );
         }

@@ -179,6 +179,10 @@ export function activateUserAccount(formValues, dispatch, props) {
         });
 }
 
+export function updateUserProfile(formValues, dispatch, props) {
+    const changePasswordUrl = AuthUrls.CHANGE_PASSWORD;
+    const token = getUserToken(store.getState());
+}
 // util functions
 function processServerError(error) {
     return  Object.keys(error).reduce(function(newDict, key) {
