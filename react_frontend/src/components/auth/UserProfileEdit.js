@@ -27,25 +27,27 @@ class Login extends Component {
                     <hr/>
 
                     <fieldset className="form-group">
-                        <Field name="email" label="Email" component={renderField}
-                               type="text" validate={[required({message: "This field is required."})]}
+                        <Field name="username" label="Username" component={renderField}
+                               type="text"
                         />
                     </fieldset>
 
+                    <fieldset className="form-group">
+                        <Field name="firstname" label="First Name" component={renderField}
+                               type="text"
+                        />
+                    </fieldset>
 
                     <fieldset className="form-group">
-                        <Field name="password" label="Password" component={renderField}
-                               type="password"  validate={[required({message: "This field is required."})]}
+                        <Field name="lastname" label="Last Name" component={renderField}
+                               type="text"
                         />
                     </fieldset>
 
                     <fieldset className="form-group">
                         { renderError(error) }
-                        <button action="submit" className="btn btn-primary">Login</button>
+                        <button action="submit" className="btn btn-primary">Save</button>
                     </fieldset>
-
-                    <p>Not registered? <Link to="/signup">Signup Here!</Link></p>
-                    <Link to="/reset_password">forgot password?</Link>
                 </form>
             </div>
         )
