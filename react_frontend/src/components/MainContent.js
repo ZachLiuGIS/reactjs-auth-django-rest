@@ -8,6 +8,7 @@ import Signup from "./auth/Signup";
 import SignupDone from "./auth/SignupDone";
 import AccountActivation from "./auth/AccountActivation";
 import UserProfile from "./auth/UserProfile";
+import UserProfileEdit from "./auth/UserProfileEdit";
 import PasswordChange from "./auth/PasswordChange";
 import PasswordReset from "./auth/PasswordReset";
 import PasswordResetDone from "./auth/PasswordResetDone";
@@ -27,6 +28,7 @@ const MainContent = () => (
             <Route path="/reset_password_done" component={PasswordResetDone}/>
             <Route path="/reset/:uid/:token/" component={PasswordResetConfirm}/>
             <Route path="/profile" component={RequireAuth(UserProfile)}/>
+            <Route path="/profile_edit" component={RequireAuth(UserProfileEdit)}/>
             <Route path="/change_password" component={RequireAuth(PasswordChange)}/>
             <Route component={NoMatch}/>
         </Switch>

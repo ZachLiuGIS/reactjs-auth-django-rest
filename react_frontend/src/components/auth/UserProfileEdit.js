@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-// import PropTypes from "prop-types";
 import { reduxForm, Field, propTypes } from "redux-form";
-import { Link } from "react-router-dom";
+import { connect } from 'react-redux'
 import { required } from "redux-form-validators"
 
-import { renderField, renderError} from "../../utils/renderUtils";
+import { renderField, renderTextAreaField, renderError} from "../../utils/renderUtils";
 import { updateUserProfile } from "../../actions/authActions";
 
 class Login extends Component {
@@ -23,7 +22,7 @@ class Login extends Component {
                     className="col col-sm-4 card mt-5 p-2"
                     onSubmit={handleSubmit}
                 >
-                    <h4 className="text-md-center">Please Log In</h4>
+                    <h4 className="text-md-center">Edit Profile</h4>
                     <hr/>
 
                     <fieldset className="form-group">
@@ -33,13 +32,25 @@ class Login extends Component {
                     </fieldset>
 
                     <fieldset className="form-group">
-                        <Field name="firstname" label="First Name" component={renderField}
+                        <Field name="first_name" label="First Name" component={renderField}
                                type="text"
                         />
                     </fieldset>
 
                     <fieldset className="form-group">
-                        <Field name="lastname" label="Last Name" component={renderField}
+                        <Field name="last_name" label="Last Name" component={renderField}
+                               type="text"
+                        />
+                    </fieldset>
+
+                    <fieldset className="form-group">
+                        <Field name="website" label="Website" component={renderField}
+                               type="text"
+                        />
+                    </fieldset>
+
+                    <fieldset className="form-group">
+                        <Field name="about" label="About Yourself" component={renderTextAreaField}
                                type="text"
                         />
                     </fieldset>
@@ -54,7 +65,13 @@ class Login extends Component {
     }
 }
 
-export default reduxForm({
+function mapStateToProps(state) {
+    return {
+        initialValues: state.auth.user
+    }
+}
+
+export default connect(mapStateToProps)(reduxForm({
     form: "update_user_profile",
     onSubmit: updateUserProfile
-})(Login);
+})(Login));

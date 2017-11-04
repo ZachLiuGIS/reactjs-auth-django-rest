@@ -180,8 +180,27 @@ export function activateUserAccount(formValues, dispatch, props) {
 }
 
 export function updateUserProfile(formValues, dispatch, props) {
-    const changePasswordUrl = AuthUrls.CHANGE_PASSWORD;
     const token = getUserToken(store.getState());
+
+    return axios.patch(AuthUrls.USER_PROFILE, formValues, {
+        headers: {
+            authorization: 'Token ' + token
+        }
+    })
+        .then(response => {
+            dispatch(notifSend({
+                message: "Your profile has been updated successfully",
+                kind: "info",
+                dismissAfter: 5000
+            }));
+
+            history.push("/profile");
+        }).catch((error) => {
+            // If request is bad...
+            // Show an error to the user
+            const processedError = processServerError(error.response.data);
+            throw new SubmissionError(processedError);
+        });
 }
 // util functions
 function processServerError(error) {

@@ -4,8 +4,8 @@ from rest_auth.serializers import UserDetailsSerializer
 
 class UserSerializer(UserDetailsSerializer):
 
-    website = serializers.URLField(source="userprofile.website")
-    about = serializers.CharField(source="userprofile.about")
+    website = serializers.URLField(source="userprofile.website", allow_blank=True, required=False)
+    about = serializers.CharField(source="userprofile.about", allow_blank=True, required=False)
 
     class Meta(UserDetailsSerializer.Meta):
         fields = UserDetailsSerializer.Meta.fields + ('website', 'about')

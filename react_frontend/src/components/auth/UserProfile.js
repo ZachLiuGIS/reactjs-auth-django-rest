@@ -22,11 +22,14 @@ class UserProfile extends Component {
             return (
                 <div className="mx-2">
                     <h4>username: {user.username}</h4>
+                    <h4>First Name: {user.first_name}</h4>
+                    <h4>Last Name: {user.last_name}</h4>
                     <h4>email: {user.email}</h4>
                     <h4>Website: {user.website}</h4>
                     <hr />
                     <h4>About Myself:</h4>
                     <p>{user.about}</p>
+
                 </div>
             );
         }
@@ -38,7 +41,9 @@ class UserProfile extends Component {
             <div>
                 {this.renderUser()}
                 {" "}
-                <Link to="/change_password">change password</Link>
+                <hr />
+                <Link className="btn btn-primary mr-2" to="/profile_edit">Update Profile</Link>
+                <Link className="btn btn-primary" to="/change_password">Change Password</Link>
             </div>
         );
     }
